@@ -1,5 +1,5 @@
 # grupo1-salesforce
-Projeto do Grupo 1 - 
+Projeto do Grupo 1 - Turma SalesForce 
 
 Integrantes:
 
