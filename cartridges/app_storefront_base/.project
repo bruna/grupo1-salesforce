@@ -6,7 +6,7 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
-			<name>com.demandware.studio.core.beehiveElementBuilder</name>
+			<name>com.demandware.studio.core.beehiveElementBuilderr</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
