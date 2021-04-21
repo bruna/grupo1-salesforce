@@ -8,4 +8,4 @@ Bruna Pereira Vasconcelos
 Gabriel Alves Queiroz Pontes  
 Kerollainy da silva Gomes  
 Vânia Leticia Rodrigues  
-Kesley Namie Namie Lahoz  
+Kesley Namie Lahoz  
