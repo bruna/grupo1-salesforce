@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col">
+        <button class="btn btn-block btn-outline-primary btn-get-in-store-inventory"
+                data-action-url="${pdict.pickUpInStore.actionUrl}"
+                data-ats-action-url="${pdict.pickUpInStore.atsActionUrl}"
+                data-modal-close-text=${Resource.msg('label.modal.close.text','instorePickup',null)}
+                type="submit"
+                ${!product.readyToOrder || !product.available || !product.availableForInStorePickup ? "disabled" : ""}>
+            ${Resource.msg('button.availability.select.store','instorePickup',null)}
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card selected-store-with-inventory display-none">
+            <div class="card-header">
+                <h5 class="pull-left">${Resource.msg('msg.in.store.inventory.selected.store.title','instorePickup',null)}</h5>
+
+                <button type="button" class="close pull-right">
+                    <span class="close" id="remove-store-selection">&times;</span>
+                </button>
+            </div>
+
+            <!-- for placing the selected store details on PDP page-->
+            <div class="card-body">
+            </div>
+
+            <button class="btn btn-block change-store btn-outline-primary" data-action-url="${pdict.pickUpInStore.actionUrl}" type="submit">
+                ${Resource.msg('button.change.store','instorePickup',null)}
+            </button>
+
+        </div>
+    </div>
+</div>
