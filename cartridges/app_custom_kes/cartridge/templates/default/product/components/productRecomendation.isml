@@ -1,4 +1,11 @@
 <div class="product-tile">
+    <iscomment> ${pdict.product.allProductLinks} </iscomment>
+
+    <isloop iterator="${pdict.product.allProductLinks}" alias="element">
+        <iscomment> <isprint value="${element.targetProduct}"> </iscomment>
+        ${element}
+    </isloop>
+
     <!-- dwMarker="product" dwContentID="${product.uuid}" -->
     <iscomment> <isinclude template="product/components/productTileImage" />
     <div class="tile-body">

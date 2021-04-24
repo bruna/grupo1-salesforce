@@ -8,7 +8,8 @@
     <isset name="product" value="${pdict.product}" scope="page" />
     <isset name="isQuickView" value="${false}" scope="page" />
     <isset name="isProductSet" value="${pdict.product.productType === 'set'}" scope="page" />
-    <isset name="recomendation" value="${pdict.recomendation}" scope="page" />
+    <isset name="recomendation" value="${pdict.product.allProductLinks}" scope="page" />
+    
     <isobject object="${product.raw}" view="detail" />
         <div class="container product-detail product-wrapper" data-pid="${product.id}">
             <div class="row">
@@ -131,7 +132,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <isinclude template="product/components/productRecomendation" />
 
             <div>
