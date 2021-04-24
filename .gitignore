@@ -41,3 +41,4 @@ test/appium/webdriver/config.json
 .idea
 test/acceptance/report
 test/integration/config.json
+package-lock.json
