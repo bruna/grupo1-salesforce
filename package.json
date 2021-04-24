@@ -36,7 +36,8 @@
     "uploadCartridge": "sgmf-scripts --uploadCartridge app_storefront_base && sgmf-scripts --uploadCartridge modules && sgmf-scripts --uploadCartridge bm_app_storefront_base",
     "watch": "sgmf-scripts --watch",
     "watch:static": "sgmf-scripts --watch static",
-    "release": "node bin/Makefile release --"
+    "release": "node bin/Makefile release --",
+    "sendAndWatch": "sgmf-scripts --uploadCartridge app_custom_kes && sgmf-scripts --watch " 
   },
   "repository": {
     "type": "git",
