@@ -1,11 +1,38 @@
 <body>
-    Teste Email de cadastro
-    <h1>${Resource.msg('email.msg.new.registration.dear', 'registration', null)}&nbsp;${pdict.firstName}&nbsp;${pdict.lastName},</h1>
+    <table style="max-width: 600px;" align="center" border="0">
+        <tr>
+            <td>
+                <p style="text-align: center;">
+                    <img src="https://i.ibb.co/nj7W9Vr/logoACN.png" style="max-width: 250px;" alt="ACN Organic Food" />
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                <p style="font-size: 1.5rem;">
+                    ${Resource.msg('email.msg.new.registration.hello', 'registration', null)} ${pdict.name}
+                </p>
 
-    <p>${Resource.msg('email.msg.new.registration.body1','registration',null)}</p>
+                <p>${Resource.msg('email.msg.new.registration.body1', 'registration', null)}</p>
 
-    <p><a href="${pdict.url}">${pdict.url}</a></p>
 
-    <p>${Resource.msg('email.msg.new.registration.body2','registration',null)}</p>
+                <p style="text-align: center;">
+                    <a href="${pdict.url}">
+                        <button
+                            style="background-color: 4CCE3B; border-width: 0;border-radius: 5px; padding: 10px;cursor: pointer;">
+                            ${Resource.msg('email.msg.new.registration.accessAccount', 'registration', null)}
+                        </button>
+                    </a>
+                </p>
 
+                <p>${Resource.msg('email.msg.new.registration.body2', 'registration', null)}</p>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+            </td>
+        </tr>
+    </table>
 </body>
