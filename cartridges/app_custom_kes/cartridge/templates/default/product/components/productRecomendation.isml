@@ -1,7 +1,4 @@
 <div class="product-tile">
-   <div>
-     <p>lalalalalalala....</p>
-   </div>
     <!-- dwMarker="product" dwContentID="${product.uuid}" -->
     <iscomment> <isinclude template="product/components/productTileImage" />
     <div class="tile-body">

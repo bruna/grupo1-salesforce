@@ -131,6 +131,7 @@
                     </div>
                 </div>
             </div>
+            
             <isinclude template="product/components/productRecomendation" />
 
             <div>
