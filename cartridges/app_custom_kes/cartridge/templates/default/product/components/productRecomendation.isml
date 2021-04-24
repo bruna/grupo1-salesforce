@@ -1,30 +1,13 @@
 <div class="product-tile">
-    <iscomment> ${pdict.product.allProductLinks} </iscomment>
-
-    <isloop iterator="${pdict.product.allProductLinks}" alias="element">
-        <iscomment> <isprint value="${element.targetProduct}"> </iscomment>
-        ${element}
-    </isloop>
-
-    <!-- dwMarker="product" dwContentID="${product.uuid}" -->
-    <iscomment> <isinclude template="product/components/productTileImage" />
-    <div class="tile-body">
-        <isif condition="${pdict.display.swatches !== false}">
-            <isinclude template="product/components/productTileSwatch" />
-        </isif>
-
-        <isinclude template="product/components/productTileName" />
-
-        <isset name="price" value="${product.price}" scope="page" />
-        <isif condition="${product.productType === 'set'}">
-            <isinclude template="product/components/pricing/setPrice" />
-        <iselse>
-            <isinclude template="product/components/pricing/main" />
-        </isif>
-
-        <isif condition="${pdict.display.ratings !== false}">
-            <isinclude template="product/productTileFooter" />
-        </isif>
-    </div> </iscomment>
+        <div class="recomendation">
+           <h3 class="text-center">Recomendações</h3>
+        </div>
+        <div class="row">
+            <isloop items="${pdict.product.allProductLinks}" var="productLinks">
+                <div class="col-4">
+                    <isinclude url="${URLUtils.url('Tile-Show', 'pid', productLinks.targetProduct.ID, 'tile', true, 'ratings', true)}" />
+                </div>
+            </isloop>
+        </div>  
     <!-- END_dwmarker -->
 </div>
