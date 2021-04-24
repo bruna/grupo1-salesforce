@@ -21,11 +21,11 @@ var bootstrapPackages = {
 };
 
 module.exports = [{
-    mode: 'production',
+    mode: 'development',
     name: 'js',
     entry: jsFiles,
     output: {
-        path: path.resolve('./cartridges/app_storefront_base/cartridge/static'),
+        path: path.resolve('./cartridges/app_custom_gab/cartridge/static'),
         filename: '[name].js'
     },
     module: {
@@ -45,11 +45,11 @@ module.exports = [{
     },
     plugins: [new webpack.ProvidePlugin(bootstrapPackages)]
 }, {
-    mode: 'none',
+    mode: 'development',
     name: 'scss',
     entry: scssFiles,
     output: {
-        path: path.resolve('./cartridges/app_storefront_base/cartridge/static'),
+        path: path.resolve('./cartridges/app_custom_gab/cartridge/static'),
         filename: '[name].css'
     },
     module: {

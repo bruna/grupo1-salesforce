@@ -22,6 +22,7 @@ cartridges/app_storefront_base/cartridge/static/zh_CN/fonts/
 cartridges/app_storefront_base/cartridge/static/en_GB/css/
 cartridges/app_storefront_base/cartridge/static/en_GB/js/
 cartridges/app_storefront_base/cartridge/static/en_GB/fonts/
+cartridge/static/*
 
 coverage/
 npm-debug.log

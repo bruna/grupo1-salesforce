@@ -10,7 +10,7 @@
         <tr>
             <td style="text-align: center;">
                 <p style="font-size: 1.5rem;">
-                    ${Resource.msg('email.msg.new.registration.hello', 'registration', null)} ${pdict.name}
+                    ${Resource.msg('email.msg.new.registration.hello', 'registration', null)}&nbsp;${pdict.firstName},
                 </p>
 
                 <p>${Resource.msg('email.msg.new.registration.body1', 'registration', null)}</p>
@@ -19,7 +19,7 @@
                 <p style="text-align: center;">
                     <a href="${pdict.url}">
                         <button
-                            style="background-color: 4CCE3B; border-width: 0;border-radius: 5px; padding: 10px;cursor: pointer;">
+                            style="background-color: #4CCE3B; border-width: 0;border-radius: 5px; padding: 10px;cursor: pointer;">
                             ${Resource.msg('email.msg.new.registration.accessAccount', 'registration', null)}
                         </button>
                     </a>
