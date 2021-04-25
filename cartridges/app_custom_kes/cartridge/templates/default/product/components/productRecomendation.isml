@@ -1,14 +1,18 @@
 <div class="product-tile">
-            <div class="recomendation">
-            <h3 class="text-center">Recomendações</h3>
-            </div>
-            <div class="row">
-                <isloop items="${pdict.product.allProductLinks}" var="productLinks">
-                    <div class="col-4">
-                        <isinclude url="${URLUtils.url('Tile-Show', 'pid', productLinks.targetProduct.ID, 'tile', true, 'ratings', true)}" />
-                    </div>
-                </isloop>
-            </div>
-            ${pdict.product.allProductLinks.length}
-    <!-- END_dwmarker -->
+
+    <isif condition="${pdict.product.allProductLinks.length > 0}">
+
+        <div class="recomendation">
+            <h3 class="text-center">Hmmmmm! Que tal levar mais um produtinho?</h3>
+        </div>
+        <div class="row">
+            <isloop items="${pdict.product.allProductLinks}" var="productLinks">
+                <div class="col-4">
+                    <isinclude
+                        url="${URLUtils.url('Tile-Show', 'pid', productLinks.targetProduct.ID, 'tile', true, 'ratings', true)}" />
+                </div>
+            </isloop>
+        </div>
+
+    </isif>
 </div>
