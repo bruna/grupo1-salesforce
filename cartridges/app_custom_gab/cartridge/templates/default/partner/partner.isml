@@ -7,7 +7,7 @@
 
         function updateStatus(idOrdem) {
             alert(idOrdem);
-            let selectedStatusValue = document.getElementById('selectStatus00000004');
+            let selectedStatusValue = document.getElementById(idOrdem.toString());
             console.log(selectedStatusValue);
         }
 
