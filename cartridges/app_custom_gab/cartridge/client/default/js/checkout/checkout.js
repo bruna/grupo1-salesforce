@@ -1,7 +1,7 @@
 'use strict';
 
 var baseCheckout = require('base/checkout/checkout');
-var baseSummaryHelpers = require('./summary');
+var baseSummaryHelpers = require('base/checkout/summary');
 var pluginBilling = require('./billing');
 var pluginShipping = require('./shipping');
 

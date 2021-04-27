@@ -1,7 +1,7 @@
 'use strict';
 
-var addressHelpers = require('./address');
-var base = require('./billing');
+var addressHelpers = require('base/checkout/address');
+var base = require('base/checkout/billing');
 
 /**
  * updates the billing address selector within billing forms
