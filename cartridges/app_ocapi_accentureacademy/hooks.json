@@ -7,6 +7,10 @@
       {
       	"name": "dw.ocapi.shop.order.beforePATCH",
       	"script" : "./cartridge/scripts/hooks/shopOrder.js"
+      },
+      {
+         "name": "dw.ocapi.shop.order_search.modifyPOSTResponse",
+         "script": "./cartridge/scripts/hooks/listOrders.js" 
       }
    ]
 }
