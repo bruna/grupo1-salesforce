@@ -11,7 +11,7 @@ server.get('Login', function (req, res, next) {
     var CustomerMgr = require('dw/customer/CustomerMgr');
 
     CustomerMgr.logoutCustomer(true);
-    res.json({ teste: 'teste' });
+    res.render('partner/partner');
     next();
 });
 

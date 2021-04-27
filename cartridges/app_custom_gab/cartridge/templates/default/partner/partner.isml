@@ -1,0 +1,64 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+
+    </script>
+    <script>
+         let token = '';
+         function botao (event){
+            let teste = $('#username').val();
+            var settings = {
+            "url": "https://account.demandware.com/dw/oauth2/access_token",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": "Basic YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhOmFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYQ=="
+            },
+            "data": {
+            "grant_type": "client_credentials"
+            }
+            };
+            
+            $.ajax(settings).done(function (response) {
+             token = response.access_token;
+             getNotShipped();
+            });
+       }
+       function getNotShipped(){
+           var parsedToken = 'Bearer '+ token+'';
+        var settings = {
+        "url": "https://zzrl-034.sandbox.us01.dx.commercecloud.salesforce.com/s/6/dw/shop/v20_10/order_search",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+        "x-dw-client-id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "Authorization": parsedToken,
+        "Content-Type": "application/json"
+        },
+        "data":
+        JSON.stringify({"query":{"text_query":{"fields":["shipping_status"],"search_phrase":"not_shipped"}},"select":"(**)","sorts":[{"field":"customer_name","sort_order":"asc"}]}),
+        };
+        $.ajax(settings).done(function (response) {
+            response.hits.map( resultado =>{
+            console.log(resultado.data.customer_name)
+            let teste = JSON.stringify(resultado.data.customer_name);
+            $('#results').append(
+                `<div>
+                    <span> 
+                    Número do pedido `+teste+`
+                    </span>
+                </div>`
+            );
+            } )
+
+        });
+       }
+    </script>
+</head>
+<div>
+    <input id="username" placeholder="Login" value='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' type="text" required>
+    <input id="password" placeholder="Senha" value='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' type="password" required>
+    <button id="send" onclick='botao()'> Logar </button>
+    <div id="results">
+    </div>
+</div>
