@@ -42,7 +42,6 @@
         "method": "POST",
         "timeout": 0,
         "headers": {
-        "x-dw-client-id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "Authorization": parsedToken,
         "Content-Type": "application/json"
         },
