@@ -4,6 +4,14 @@
     </script>
     <script>
          let token = '';
+
+        function updateStatus(idOrdem) {
+            alert(idOrdem);
+            let selectedStatusValue = document.getElementById('selectStatus00000004');
+            console.log(selectedStatusValue);
+        }
+
+
          function botao (event){
             let teste = $('#username').val();
             var settings = {
@@ -18,7 +26,7 @@
             "grant_type": "client_credentials"
             }
             };
-            
+
             $.ajax(settings).done(function (response) {
              token = response.access_token;
              getNotShipped();
@@ -40,17 +48,32 @@
         };
         $.ajax(settings).done(function (response) {
             response.hits.map( resultado =>{
-            console.log(resultado.data.customer_name)
-            let teste = JSON.stringify(resultado.data.customer_name);
-            $('#results').append(
-                `<div>
-                    <span> 
-                    Número do pedido `+teste+`
-                    </span>
-                </div>`
-            );
-            } )
+                console.log(resultado.data);
+                let customer_name = JSON.stringify(resultado.data.customer_name);
+                let confirmation_status = JSON.stringify(resultado.data.confirmation_status);
+                let order_no = JSON.stringify(resultado.data.order_no);
+                let idSelect = order_no.replace(/"/g, ''); //remove as ""
 
+
+
+                $('#results').append(
+                    `<div>
+                        <b>Número do pedido</b>: `+order_no+`<br>
+                        <b>Cliente</b>: `+customer_name+`<br>
+                        <b>Status</b>: `+confirmation_status+`<br>
+
+                        <label for="selectStatus"><b>Mudar Status:</b></label>
+                        <select id="selectStatus`+idSelect+`">
+                            <option value="1">opt1</option>
+                            <option value="2">opt2</option>
+                            <option value="3">opt3</option>
+                        </select>
+                        <button id=`+order_no+` onclick="updateStatus(this.id)">ok</button>
+                    </div>
+                    <br><br>
+                    `
+                );
+            })
         });
        }
     </script>
