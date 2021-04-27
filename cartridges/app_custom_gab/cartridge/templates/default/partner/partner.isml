@@ -6,8 +6,8 @@
          let token = '';
 
         function updateStatus(idOrdem) {
-            alert(idOrdem);
-            let selectedStatusValue = document.getElementById(idOrdem.toString());
+            console.log(idOrdem);
+            let selectedStatusValue = document.getElementById("selectStatus"+idOrdem.toString()).value;
             console.log(selectedStatusValue);
         }
 
