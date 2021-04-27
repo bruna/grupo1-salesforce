@@ -35,6 +35,9 @@ var shopOrderAfterPatch = function (order, orderInput) {
     if (!empty(orderInput.paymentStatus)) {
         order.setPaymentStatus(Resource.msg('order.payment_status.' + orderInput.paymentStatus, 'ocapi_technical', order.paymentStatus));
     }
+
+    ShopOrderHelpers.notifyOrderStatus(order);
+
     return new Status(Status.OK);
 };
 

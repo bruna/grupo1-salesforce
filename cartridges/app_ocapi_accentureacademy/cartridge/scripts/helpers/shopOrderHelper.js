@@ -26,4 +26,22 @@ function sendConfirmationShipmentEmail(order) {
     emailHelpers.sendEmail(emailObj, 'shopOrder/confirmationShipmentEmail', orderObject);
 }
 
+function notifyOrderStatus(order) {
+    var currentLocale = Locale.getLocale(order.getCustomerLocaleID());
+
+    var orderModel = new OrderModel(order, { countryCode: currentLocale.country, containerView: 'order' });
+
+    var orderObject = { order: orderModel };
+
+    var emailObj = {
+        to: order.customerEmail,
+        subject: Resource.msg('subject.shipped_email', 'ocapi_shopOrder', null),
+        from: Site.current.getCustomPreferenceValue('customerServiceEmail') || 'no-reply@salesforce.com',
+        type: emailHelpers.emailTypes.orderConfirmation
+    };
+
+    emailHelpers.sendEmail(emailObj, 'shopOrder/confirmationShipmentEmail', orderObject);
+}
+
 exports.sendConfirmationShipmentEmail = sendConfirmationShipmentEmail;
+exports.notifyOrderStatus = notifyOrderStatus;
