@@ -1,0 +1,24 @@
+<body>
+    <div>
+        <p>${Resource.msg('custom.email.contact.from', 'customEmail', null)}</p>
+        <p>${pdict.firstName}&nbsp;${pdict.lastName}</p>
+        <p>${Resource.msg('custom.email.contact.email', 'customEmail', null)}&nbsp;${pdict.contactEmail}</p>
+        <p>${Resource.msg('custom.email.contact.subject', 'customEmail', null)}&nbsp;
+            <isif condition="${pdict.contactTopic == 'GI'}">
+                ${Resource.msg('custom.email.subject.GI', 'customEmail', null)}
+            </isif>
+            <isif condition="${pdict.contactTopic == 'OS'}">
+                ${Resource.msg('custom.email.subject.OS', 'customEmail', null)}
+            </isif>
+            <isif condition="${pdict.contactTopic == 'MA'}">
+                ${Resource.msg('custom.email.subject.MA', 'customEmail', null)}
+            </isif>
+            <isif condition="${pdict.contactTopic == 'O'}">
+                ${Resource.msg('custom.email.subject.O', 'customEmail', null)}
+            </isif>
+        </p>
+        <p>${Resource.msg('custom.email.contact.comentary', 'customEmail', null)}</p>
+        <p>${pdict.contactComment}</p>
+    </div>
+
+</body>

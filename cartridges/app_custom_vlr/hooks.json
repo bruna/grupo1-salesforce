@@ -1,0 +1,8 @@
+{
+    "hooks": [
+        {
+            "name": "app.contact.sendMailAfterContact",
+            "script": "./cartridge/controllers/scripts/hooks/sendMailAfterContact.js"
+        }
+    ]
+}
