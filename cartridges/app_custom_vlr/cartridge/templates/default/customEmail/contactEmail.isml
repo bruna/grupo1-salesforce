@@ -17,7 +17,9 @@
                 ${Resource.msg('custom.email.subject.O', 'customEmail', null)}
             </isif>
         </p>
-        <p>${Resource.msg('custom.email.contact.comentary', 'customEmail', null)}</p>
+        <p>
+            ${Resource.msg('custom.email.contact.Comentary', 'customEmail', null)}
+        </p>
         <p>${pdict.contactComment}</p>
     </div>
 
