@@ -7,9 +7,7 @@
          let token = '';
 
         function updateStatus(idOrdem) {
-            console.log(idOrdem);
             let selectedStatusValue = document.getElementById("selectStatus"+idOrdem.toString()).value;
-            console.log(selectedStatusValue);
         }
 
 
@@ -17,7 +15,6 @@
             let username = $('#username').val();
             let password = $('#password').val();
             let auth = 'Basic '+ btoa(username + ':' + password);
-            console.log(auth);
             var settings = {
             "url": "https://account.demandware.com/dw/oauth2/access_token",
             "method": "POST",
@@ -52,9 +49,11 @@
         $.ajax(settings).done(function (response) {
             response.hits.map( resultado =>{
                 $('#login').hide();
-                let customer_name = JSON.stringify(resultado.data.customer_name);
-                let confirmation_status = JSON.stringify(resultado.data.confirmation_status);
-                let order_no = JSON.stringify(resultado.data.order_no);
+                $('#results-container').removeAttr('hidden');
+                console.log(resultado);
+                let customer_name = JSON.stringify(resultado.data.customer_name).replace(/"/g, '');
+                let confirmation_status = JSON.stringify(resultado.data.confirmation_status).replace(/"/g, '');
+                let order_no = JSON.stringify(resultado.data.order_no).replace(/"/g, '');
                 let idSelect = order_no.replace(/"/g, ''); //remove as ""
 
 
@@ -87,20 +86,23 @@
     <div class="container d-flex flex-column">
         <div class="login" id="login">
             <div class="row mb-4 justify-content-center">
-                <input id="username" placeholder="Login" value='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' type="text" required/>
+                <input id="username" placeholder="Login" value='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' type="text" required />
             </div>
             <div class="row mb-4 justify-content-center">
-                <input id="password" placeholder="Senha" value='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' type="password" required/>
+                <input id="password" placeholder="Senha" value='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' type="password"
+                    required />
             </div>
             <div class="row mb-4 justify-content-center">
                 <button id="send" onclick='botao()'> Logar </button>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div id="results">
+        <div class="results-container" id="results-container" hidden>
+            <div class="row justify-content-center">
+                <div id="results">
+
+                </div>
 
             </div>
-
         </div>
     </div>
 
