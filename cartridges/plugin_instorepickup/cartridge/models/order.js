@@ -18,6 +18,8 @@ function OrderModel(lineItemContainer, options) {
         this.firstLineItem.isPickUpInStore = lineItemContainer.productLineItems[0] ?
             lineItemContainer.productLineItems[0].shipment.shippingMethod.custom.storePickupEnabled : null;
     }
+    this.shippingStatus = lineItemContainer.shippingStatus ?
+    lineItemContainer.shippingStatus : null;
 }
 
 OrderModel.prototype = Object.create(base.prototype);
