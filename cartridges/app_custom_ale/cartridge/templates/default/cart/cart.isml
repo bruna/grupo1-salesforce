@@ -108,11 +108,13 @@
     function sendCesta() {
         var url = document.getElementById('bt-cesta').getAttribute('url');
         var ids = document.getElementsByClassName('form-control quantity custom-select');
-        var pids = [];
+        var pids="";
 
         for (let item of ids){
-            pids.push(item.getAttribute('data-pid'));
+            pids += item.getAttribute('data-pid').toString()+',';
         }
+
+        pids = pids.slice(0, -1);
 
         console.log(pids);
         console.log(url);
@@ -123,7 +125,7 @@
                 url: url,
                 dataType: "json",
                 contentType: 'application/json',
-                data: JSON.stringify({ pids: pids }),
+                data: pids,
                 success: function(msg){
                     $('.answer').html(msg);
                 }
