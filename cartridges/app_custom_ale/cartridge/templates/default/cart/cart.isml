@@ -84,11 +84,15 @@
                 </div>
             </div>
             <isinclude template="cart/cartRemoveProductModal"/>
+            <label>
+                 ${Resource.msg('label.text.labelText','productTile',null)}
+            </label>
             <button
                 id='bt-cesta'
                 onclick="sendCesta()"
                 class="btn btn-primary btn-block promo-code-btn"
-                url="${URLUtils.url('CestaCustom-Cesta')}">aa
+                url="${URLUtils.url('CestaCustom-Cesta')}"
+                >${Resource.msg('label.text.button.add','productTile',null)}
             </button>
         </div>
 
