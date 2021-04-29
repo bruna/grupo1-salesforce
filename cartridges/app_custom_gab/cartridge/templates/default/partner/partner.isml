@@ -7,16 +7,37 @@
          let token = '';
 
         function updateStatus(idOrdem) {
-            let selectedStatusValue = document.getElementById("selectStatus"+idOrdem.toString()).value;
-        }
+            $("#order-loading-div").attr("hidden",false);
+            var url = `https://zzrl-034.sandbox.us01.dx.commercecloud.salesforce.com/s/6/dw/shop/v21_3/orders/` + idOrdem;
+            var parsedToken = 'Bearer '+ token+'';
+
+            var settings = {
+                "url":  url,
+                "method": "PATCH",
+                "timeout": 0,
+                "headers": {
+                  "x-dw-client-id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "Authorization": parsedToken,
+                  "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({"shipping_status":"shipped"}),
+        };
+       $.ajax(settings).done(function (response) {
+        $("#container-"+idOrdem).attr("hidden",true);
+        $("#order-loading-div").attr("hidden",false);
+       });
+    }
 
 
          function botao (event){
+             $("#login-loading-div").attr("hidden",false);
             let username = $('#username').val();
             let password = $('#password').val();
-            let auth = 'Basic '+ btoa(username + ':' + password);
+            let clientId = $('#client-id').val();
+            let auth = 'Basic '+ btoa(username + ':' + password + ':' + clientId);
+            console.log(auth)
             var settings = {
-            "url": "https://account.demandware.com/dw/oauth2/access_token",
+            "url": "https://zzrl-034.sandbox.us01.dx.commercecloud.salesforce.com/dw/oauth2/access_token?client_id=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
             "method": "POST",
             "timeout": 0,
             "headers": {
@@ -24,13 +45,14 @@
             "Authorization": auth
             },
             "data": {
-            "grant_type": "client_credentials"
-            }
+              "grant_type": "urn:demandware:params:oauth:grant-type:client-id:dwsid:dwsecuretoken"
+            }      
             };
-
             $.ajax(settings).done(function (response) {
              token = response.access_token;
              getNotShipped();
+             $("#login-loading-div").attr("hidden",true);
+
             });
        }
        function getNotShipped(){
@@ -47,10 +69,10 @@
         JSON.stringify({"query":{"text_query":{"fields":["shipping_status"],"search_phrase":"not_shipped"}},"select":"(**)","sorts":[{"field":"customer_name","sort_order":"asc"}]}),
         };
         $.ajax(settings).done(function (response) {
-            response.hits.map( resultado =>{
+            if(response.count > 0){
+            response.hits.map( resultado => {
                 $('#login').hide();
                 $('#results-container').removeAttr('hidden');
-                console.log(resultado);
                 let customer_name = JSON.stringify(resultado.data.customer_name).replace(/"/g, '');
                 let confirmation_status = JSON.stringify(resultado.data.confirmation_status).replace(/"/g, '');
                 let order_no = JSON.stringify(resultado.data.order_no).replace(/"/g, '');
@@ -59,37 +81,56 @@
 
 
                 $('#results').append(
-                    `<div>
-                        <b>Número do pedido</b>: `+order_no+`<br>
+                    `<div id="container-`+ order_no+`">
+                        </b>Número do pedido</b>: `+order_no+`<br>
                         <b>Cliente</b>: `+customer_name+`<br>
                         <b>Status</b>: `+confirmation_status+`<br>
 
                         <label for="selectStatus"><b>Mudar Status:</b></label>
-                        <select id="selectStatus`+idSelect+`">
-                            <option value="1">opt1</option>
-                            <option value="2">opt2</option>
-                            <option value="3">opt3</option>
-                        </select>
-                        <button id=`+order_no+` onclick="updateStatus(this.id)">ok</button>
+                        <button id=`+order_no+` onclick="updateStatus(this.id)">Enviar Pacote</button>
                     </div>
                     <br><br>
                     `
                 );
             })
+            }
+            else{
+                console.log('Nenhum Pedido!');
+            }
         });
        }
     </script>
+    <style>
+        .loading-div {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.7;
+            background-color: #fff;
+            z-index: 99;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="container d-flex flex-column">
         <div class="login" id="login">
-            <div class="row mb-4 justify-content-center">
-                <input id="username" placeholder="Login" value='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' type="text" required />
+            <div class="loading-div" id="login-loading-div" hidden>
+                <i class="fa fa-spinner fa-spin fa-3x mt-5" aria-hidden="true"></i>
             </div>
             <div class="row mb-4 justify-content-center">
-                <input id="password" placeholder="Senha" value='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' type="password"
+                <input id="username" placeholder="Login" value='grupo1.salesforce@gmail.com' type="text" required />
+            </div>
+            <div class="row mb-4 justify-content-center">
+                <input id="password" placeholder="Senha" value='Grupo1Accenture2021' type="password" required />
+            </div>
+            <div class="row mb-4 justify-content-center">
+                <input id="client-id" placeholder="Cliend ID" value='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' type="text"
                     required />
             </div>
             <div class="row mb-4 justify-content-center">
@@ -97,7 +138,13 @@
             </div>
         </div>
         <div class="results-container" id="results-container" hidden>
+            <div class="loading-div" id="orders-loading-div">
+                <i class="fa fa-spinner fa-spin fa-3x mt-5" aria-hidden="true"></i>
+            </div>
             <div class="row justify-content-center">
+                <p>
+                    Pedidos:
+                </p>
                 <div id="results">
 
                 </div>
