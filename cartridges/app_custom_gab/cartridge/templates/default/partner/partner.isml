@@ -35,7 +35,6 @@
             let password = $('#password').val();
             let clientId = $('#client-id').val();
             let auth = 'Basic '+ btoa(username + ':' + password + ':' + clientId);
-            console.log(auth)
             var settings = {
             "url": "https://zzrl-034.sandbox.us01.dx.commercecloud.salesforce.com/dw/oauth2/access_token?client_id=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
             "method": "POST",
@@ -75,19 +74,28 @@
                 $('#results-container').removeAttr('hidden');
                 let customer_name = JSON.stringify(resultado.data.customer_name).replace(/"/g, '');
                 let confirmation_status = JSON.stringify(resultado.data.confirmation_status).replace(/"/g, '');
+                let endereco1 = resultado.data.shipments[0].shipping_address.address1;
+                let endereco2 = resultado.data.shipments[0].shipping_address.address2;
+                let postalCode = resultado.data.shipments[0].shipping_address.postal_code;
+
                 let order_no = JSON.stringify(resultado.data.order_no).replace(/"/g, '');
                 let idSelect = order_no.replace(/"/g, ''); //remove as ""
-
-
+                
+                let products = ''
+                resultado.data.product_items.map((produto =>{
+                    products+= produto.quantity+'x - '+produto.product_id + ' ' + produto.product_name + ' ' + '<br>'
+                }))
 
                 $('#results').append(
                     `<div id="container-`+ order_no+`">
                         </b>Número do pedido</b>: `+order_no+`<br>
                         <b>Cliente</b>: `+customer_name+`<br>
                         <b>Status</b>: `+confirmation_status+`<br>
-
+                        <b>Endereço de entrega</b>: `+ endereco1+` `+endereco2+` `+ postalCode +`<br>
+                        <b>Produtos</b>: `
+                        +products+`
                         <label for="selectStatus"><b>Mudar Status:</b></label>
-                        <button id=`+order_no+` onclick="updateStatus(this.id)">Enviar Pacote</button>
+                        <button id=`+order_no+` onclick="updateStatus(this.id)" class="btn btn-primary" type="button">Enviar Pacote</button>
                     </div>
                     <br><br>
                     `
@@ -141,15 +149,17 @@
             <div class="loading-div" id="orders-loading-div" hidden>
                 <i class="fa fa-spinner fa-spin fa-3x mt-5" aria-hidden="true"></i>
             </div>
-            <div class="row justify-content-center">
-                <div class="row">
+            <div class="d-flex justify-content-center">
+                <div class="justify-content-center">
                     Pedidos:
                 </div>
-                <div id="results">
+            </div>
+            <div class="d-flex justify-content-center">
+                <div id="results" class="justify-content-center">
 
                 </div>
-
             </div>
+
         </div>
     </div>
 
