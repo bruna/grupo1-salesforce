@@ -13,7 +13,7 @@ server.post('Cesta', function (req, res, next) {
     txn.wrap(function () {
         var obj = CustomObjectMgr.createCustomObject('Cesta', '0006');
         obj.custom.idCliente = customerID;
-        // obj.custom.idProdutos = pids;
+        obj.custom.idProdutos = pids;
     });
 
     // txn.begin();
