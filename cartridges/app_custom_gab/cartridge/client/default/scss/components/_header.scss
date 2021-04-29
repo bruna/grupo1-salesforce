@@ -75,13 +75,11 @@ $menu-item-margin: 0.625em;
     @include media-breakpoint-up(lg) {
         width: 14.125em; /* 226/16 */
         margin-left: -7.0625em; /* 113/16 */
-        padding-top: 0.5em;
     }
 
     @include media-breakpoint-down(md) {
         width: 4em; /* 64/16 */
         margin-left: -2em;
-        padding-top: 0.8em;
     }
 }
 
