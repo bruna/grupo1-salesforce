@@ -17,7 +17,6 @@
     <div>
         <p>${Resource.msg('msg.confirmation_shipped', 'ocapi_shopOrder', null)}</p>
     </div>
-TESTEEEE
     <!--- Shipping Address --->
     <isloop items="${pdict.order.shipping}" var="shippingModel" status="shippingLoop">
         <isinclude template="checkout/confirmation/shippingTitle" />
