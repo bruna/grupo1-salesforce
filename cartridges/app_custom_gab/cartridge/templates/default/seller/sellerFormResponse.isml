@@ -1,0 +1,6 @@
+<isdecorate template="common/layout/page">
+    <div class="container mt-5 mb-5">
+        <h1 class="page-title">${Resource.msg('label.input.form.title', 'forms', null)}</h1>
+        <h2>${Resource.msg('label.input.form.success', 'forms', null)}</h2>
+    </div>
+</isdecorate>
